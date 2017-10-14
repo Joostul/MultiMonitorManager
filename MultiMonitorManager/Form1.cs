@@ -21,6 +21,7 @@ namespace MultiMonitorManager
             var totalBounds = ScreenManager.GetDesktopDimensions();
 
             // Select images that can fit the screens together
+            // Make images into big image
             // Set wallpaper
 
             Wallpaper.Set(@"C:\Users\joost\Pictures/wallpaper.png", Wallpaper.Style.Tiled);
