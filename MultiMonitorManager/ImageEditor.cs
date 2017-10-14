@@ -9,7 +9,8 @@ namespace MultiMonitorManager
 {
     public static class ImageEditor
     {
-        public static string CreateCombinationImage(string[] images, Size size)
+        // Todo: rewrite to have Dictionary of <Image, Point>
+        public static string CreateCombinationImage(Dictionary<string, Point> images, Size size)
         {
             string fileLocation = @"C:\Users\joost\Pictures\wallpaper.png";
 
@@ -19,7 +20,13 @@ namespace MultiMonitorManager
             {
                 using(Graphics g = Graphics.FromImage(bmp))
                 {
+
                     g.FillRegion(b, new Region(new Rectangle(new Point(0, 0), size)));
+
+                    foreach (var i in images)
+                    {
+                        g.DrawImage(Image.FromFile(i.Key), i.Value);
+                    }
                 }
 
                 bmp.Save(@"C:\Users\joost\Pictures\wallpaper.png", System.Drawing.Imaging.ImageFormat.Png);
