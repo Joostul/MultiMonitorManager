@@ -15,8 +15,10 @@ namespace MultiMonitorManager
 
         public static Size GetScreenDimensions(int screenNumber)
         {
-            return new Size((int)Math.Round(Screen.AllScreens[screenNumber].Bounds.Height * getScalingFactor()),
-                (int)Math.Round(Screen.AllScreens[screenNumber].Bounds.Width * getScalingFactor()));
+            var scalingfactor = getScalingFactor();
+
+            return new Size((int)Math.Round(Screen.AllScreens[screenNumber].Bounds.Height * scalingfactor),
+                (int)Math.Round(Screen.AllScreens[screenNumber].Bounds.Width * scalingfactor));
         }
 
         public static Screen[] GetScreens()
