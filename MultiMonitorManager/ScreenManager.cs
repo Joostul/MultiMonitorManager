@@ -26,18 +26,9 @@ namespace MultiMonitorManager
             return Screen.AllScreens;
         }
 
-        public static Rectangle GetDesktopDimensions()
+        public static Size GetDesktopDimensions()
         {
-            Rectangle rect = new Rectangle();
-
-            foreach (var s in Screen.AllScreens)
-            {
-                rect = Rectangle.Union(rect, s.Bounds);
-            }
-
-            return rect;
-
-            //return Screen.AllScreens.Select(screen => screen.Bounds).Aggregate(Rectangle.Union).Size;
+            return Screen.AllScreens.Select(screen => screen.Bounds).Aggregate(Rectangle.Union).Size;
         }
 
         [DllImport("gdi32.dll")]
