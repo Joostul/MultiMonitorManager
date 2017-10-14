@@ -16,7 +16,7 @@ namespace MultiMonitorManager
             Screens = Screen.AllScreens;
         }
 
-        //public Po
+        //public Point blabla
 
     }
 }
