@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace MultiMonitorManager
@@ -9,12 +10,24 @@ namespace MultiMonitorManager
         {
             InitializeComponent();
 
+            Graphics graphics = CreateGraphics();
+
+            // Todo: refactor this method when ScreenManager bug is fixed
             // Get screens
+            Size[] screens = new Size[]
+            {
+                ScreenManager.GetScreenDimensions(0),
+                ScreenManager.GetScreenDimensions(1)
+            };
 
             // Select images that can fit the screens together
+            // Make images into big image
+            string imagePath = ImageEditor.CreateCombinationImage(new string[] { "", "" }, new Size(5600, 3840));
+
             // Set wallpaper
 
-            Wallpaper.Set(@"C:\Users\joost\Pictures/wallpaper.png", Wallpaper.Style.Tiled);
+
+            Wallpaper.Set(imagePath, Wallpaper.Style.Tiled);
         }
 
         private void Form1_Resize(object sender, EventArgs e)
