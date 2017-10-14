@@ -12,19 +12,22 @@ namespace MultiMonitorManager
 
             Graphics graphics = CreateGraphics();
 
+            // Todo: refactor this method when ScreenManager bug is fixed
             // Get screens
-            var screen1 = ScreenManager.GetScreenDimensions(0);
-            var screen2 = ScreenManager.GetScreenDimensions(1);
-
-            var screens = ScreenManager.GetScreens();
-
-            var totalBounds = ScreenManager.GetDesktopDimensions();
+            Size[] screens = new Size[]
+            {
+                ScreenManager.GetScreenDimensions(0),
+                ScreenManager.GetScreenDimensions(1)
+            };
 
             // Select images that can fit the screens together
             // Make images into big image
+            string imagePath = ImageEditor.CreateCombinationImage(new string[] { "", "" }, new Size(5600, 3840));
+
             // Set wallpaper
 
-            Wallpaper.Set(@"C:\Users\joost\Pictures/wallpaper.png", Wallpaper.Style.Tiled);
+
+            Wallpaper.Set(imagePath, Wallpaper.Style.Tiled);
         }
 
         private void Form1_Resize(object sender, EventArgs e)

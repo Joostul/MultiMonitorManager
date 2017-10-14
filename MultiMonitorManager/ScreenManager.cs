@@ -17,8 +17,19 @@ namespace MultiMonitorManager
         {
             var scalingfactor = getScalingFactor();
 
-            return new Size((int)Math.Round(Screen.AllScreens[screenNumber].Bounds.Height * scalingfactor),
-                (int)Math.Round(Screen.AllScreens[screenNumber].Bounds.Width * scalingfactor));
+            // Hardcoding the scaling factor for my own desktop for now
+            if(Screen.AllScreens[screenNumber].Primary != true)
+            {
+                scalingfactor = 1.5F;
+            }
+
+            var size = new Size()
+            {
+                Height = (int)Math.Round(Screen.AllScreens[screenNumber].Bounds.Height * scalingfactor),
+                Width = (int)Math.Round(Screen.AllScreens[screenNumber].Bounds.Width * scalingfactor)
+            };
+
+            return size;
         }
 
         public static Screen[] GetScreens()
