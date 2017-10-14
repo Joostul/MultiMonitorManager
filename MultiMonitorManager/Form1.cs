@@ -10,6 +10,7 @@ namespace MultiMonitorManager
             InitializeComponent();
 
             // Get screens
+
             // Select images that can fit the screens together
             // Set wallpaper
 
