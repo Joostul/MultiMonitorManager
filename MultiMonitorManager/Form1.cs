@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace MultiMonitorManager
@@ -22,7 +23,14 @@ namespace MultiMonitorManager
             };
 
             // Select images that can fit the screens together
-            string image1 = @"C:\Users\joost\Pictures\6JtnR1O.jpg";
+            var files = Directory.GetFiles(@"\\freenas\Data\Images\wallpapers 1440p");
+
+            // Todo: Sort by resolution of the screens
+            // Todo: better randomizer?
+            Random random = new Random();
+            int i = random.Next(files.Length);
+
+            string image1 = files[i];
             string image2 = @"C:\Users\joost\Pictures\4k wallpaper.jpg";
 
             // Make images into big image
