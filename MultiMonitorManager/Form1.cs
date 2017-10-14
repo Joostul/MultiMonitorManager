@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace MultiMonitorManager
@@ -9,7 +10,15 @@ namespace MultiMonitorManager
         {
             InitializeComponent();
 
+            Graphics graphics = CreateGraphics();
+
             // Get screens
+            var screen1 = ScreenManager.GetScreenDimensions(0);
+            var screen2 = ScreenManager.GetScreenDimensions(1);
+
+            var screens = ScreenManager.GetScreens();
+
+            var totalBounds = ScreenManager.GetDesktopDimensions();
 
             // Select images that can fit the screens together
             // Set wallpaper
