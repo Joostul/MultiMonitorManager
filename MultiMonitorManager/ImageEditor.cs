@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 
 namespace MultiMonitorManager
 {
     public static class ImageEditor
     {
-        public static string CreateCombinationImage(Dictionary<string, Point> images, Size size)
+        public static string CreateCombinationImage(Dictionary<string, Point> images, Size size, string folder)
         {
+            Directory.CreateDirectory(folder);
+
             try
             {
-
-                string fileLocation = @"C:\Users\joost\Pictures\wallpaper.png";
+                string fileLocation = Path.Combine(folder, Guid.NewGuid().ToString() + ".png");
 
                 Brush b = new SolidBrush(Color.Blue);
 
@@ -28,12 +30,12 @@ namespace MultiMonitorManager
                         }
                     }
 
-                    bmp.Save(@"C:\Users\joost\Pictures\wallpaper.png", System.Drawing.Imaging.ImageFormat.Png);
+                    bmp.Save(fileLocation, System.Drawing.Imaging.ImageFormat.Png);
                 }
 
                 return fileLocation;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return null;
             }
