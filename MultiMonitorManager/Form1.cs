@@ -8,6 +8,8 @@ namespace MultiMonitorManager
 {
     public partial class Form1 : Form
     {
+        private string _wallpapersPath;
+
         public Form1()
         {
             InitializeComponent();
@@ -42,7 +44,7 @@ namespace MultiMonitorManager
             };
 
             // Select images that can fit the screens together
-            var files = Directory.GetFiles(@"\\freenas\Data\Images\wallpapers 1440p");
+            var files = Directory.GetFiles(_wallpapersPath);
             string tempFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "temp");
 
             string image1 = GetRandomImageWithSize(files, screens[1]);
@@ -117,6 +119,18 @@ namespace MultiMonitorManager
             Random random = new Random();
             int i = random.Next(files.Length);
             return files[i];
+        }
+
+        private void ChooseWallpaperFolder_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            if(dialog.ShowDialog() == DialogResult.OK)
+            {
+                _wallpapersPath = dialog.SelectedPath;
+            } else
+            {
+                MessageBox.Show("Please select a folder that contains your background images.");
+            }
         }
     }
 }
