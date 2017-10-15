@@ -45,6 +45,10 @@ namespace MultiMonitorManager
 
             // Select images that can fit the screens together
             var files = Directory.GetFiles(_wallpapersPath);
+            if(files.Length < 1)
+            {
+                MessageBox.Show($"Folder contains no wallpapers with resolution: {screens[1].Height} x {screens[1].Height}");
+            }
             string tempFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "temp");
 
             string image1 = GetRandomImageWithSize(files, screens[1]);
@@ -127,6 +131,11 @@ namespace MultiMonitorManager
             if(dialog.ShowDialog() == DialogResult.OK)
             {
                 _wallpapersPath = dialog.SelectedPath;
+                if(_wallpapersPath == null)
+                {
+                    MessageBox.Show("Folder contains no files, please select another.");
+                }
+                label1.Text = _wallpapersPath;
             } else
             {
                 MessageBox.Show("Please select a folder that contains your background images.");

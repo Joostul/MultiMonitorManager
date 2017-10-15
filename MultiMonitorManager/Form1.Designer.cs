@@ -30,6 +30,7 @@
         {
             this.AutoSetBackgrounds = new System.Windows.Forms.Button();
             this.ChooseWallpaperFolder = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // AutoSetBackgrounds
@@ -52,17 +53,28 @@
             this.ChooseWallpaperFolder.UseVisualStyleBackColor = true;
             this.ChooseWallpaperFolder.Click += new System.EventHandler(this.ChooseWallpaperFolder_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(456, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(767, 518);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.ChooseWallpaperFolder);
             this.Controls.Add(this.AutoSetBackgrounds);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -70,6 +82,7 @@
 
         private System.Windows.Forms.Button AutoSetBackgrounds;
         private System.Windows.Forms.Button ChooseWallpaperFolder;
+        private System.Windows.Forms.Label label1;
     }
 }
 
