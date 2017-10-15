@@ -11,6 +11,48 @@ namespace MultiMonitorManager
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private string GetRandomImageWithSize(string[] files, Size screenSize)
+        {
+            string image = null;
+            GraphicsUnit unit = GraphicsUnit.Pixel;
+            RectangleF imageBounds = new RectangleF();
+
+            do
+            {
+                image = GetRandomFile(files);
+                imageBounds = Image.FromFile(image).GetBounds(ref unit);
+            } while (imageBounds.Height != screenSize.Height && imageBounds.Width != screenSize.Width);
+
+            return image;
+        }
+
+        private string GetRandomFile(string[] files)
+        {
+            // Todo: better randomizer?
+            Random random = new Random();
+            int i = random.Next(files.Length);
+            return files[i];
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (FormWindowState.Minimized == WindowState)
+            {
+                Hide();
+            }
+
+            else if (FormWindowState.Normal == WindowState)
+            {
+
+            }
+        }
+
+        private void AutoSetBackgrounds_Click(object sender, EventArgs e)
+        {
+            AutoSetBackgrounds.Enabled = false;
+            AutoSetBackgrounds.Text = "Setting Background...";
 
             Graphics graphics = CreateGraphics();
 
@@ -25,26 +67,9 @@ namespace MultiMonitorManager
             // Select images that can fit the screens together
             var files = Directory.GetFiles(@"\\freenas\Data\Images\wallpapers 1440p");
 
-            // Todo: Sort by resolution of the screens
-            // Todo: better randomizer?
-            Random random = new Random();
-            int i = 0;
-
-            // Check if image is same size as screen
-            GraphicsUnit unit = GraphicsUnit.Pixel;
-            string image1 = null;
+            string image1 = GetRandomImageWithSize(files, screens[1]);
             string image2 = @"C:\Users\joost\Pictures\4k wallpaper.jpg";
 
-            RectangleF imageBounds = new RectangleF();
-
-            while (imageBounds.Height != screens[1].Height && imageBounds.Width != screens[1].Width)
-            {
-                i = random.Next(files.Length);
-                imageBounds = Image.FromFile(files[i]).GetBounds(ref unit);
-            } 
-
-            image1 = files[i];
-            
             // Make images into big image
             string imagePath = ImageEditor.CreateCombinationImage(
                 new Dictionary<string, Point>()
@@ -55,19 +80,16 @@ namespace MultiMonitorManager
                 new Size(5600, 3840));
 
             // Set wallpaper
-            Wallpaper.Set(imagePath, Wallpaper.Style.Tiled);
-        }
-
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            if (FormWindowState.Minimized == WindowState)
+            if (imagePath != null)
             {
-                Hide();
-            }
+                Wallpaper.Set(imagePath, Wallpaper.Style.Tiled);
 
-            else if (FormWindowState.Normal == WindowState)
+                AutoSetBackgrounds.Text = "Auto Set Backgrounds";
+                AutoSetBackgrounds.Enabled = true;
+            } else
             {
-
+                AutoSetBackgrounds.Text = "An Error Occured, try again.";
+                AutoSetBackgrounds.Enabled = true;
             }
         }
     }

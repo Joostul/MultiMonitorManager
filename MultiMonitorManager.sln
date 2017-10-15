@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiMonitorManager", "MultiMonitorManager\MultiMonitorManager.csproj", "{1054BE76-622E-4A52-AD0D-905C2166F220}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiMonitorManager.UnitTests", "MultiMonitorManager.UnitTests\MultiMonitorManager.UnitTests.csproj", "{1B168FC7-6DD4-464D-99B3-B7528D0C8F3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1054BE76-622E-4A52-AD0D-905C2166F220}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1054BE76-622E-4A52-AD0D-905C2166F220}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1054BE76-622E-4A52-AD0D-905C2166F220}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B168FC7-6DD4-464D-99B3-B7528D0C8F3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B168FC7-6DD4-464D-99B3-B7528D0C8F3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B168FC7-6DD4-464D-99B3-B7528D0C8F3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B168FC7-6DD4-464D-99B3-B7528D0C8F3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
