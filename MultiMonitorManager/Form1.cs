@@ -28,11 +28,23 @@ namespace MultiMonitorManager
             // Todo: Sort by resolution of the screens
             // Todo: better randomizer?
             Random random = new Random();
-            int i = random.Next(files.Length);
+            int i = 0;
 
-            string image1 = files[i];
+            // Check if image is same size as screen
+            GraphicsUnit unit = GraphicsUnit.Pixel;
+            string image1 = null;
             string image2 = @"C:\Users\joost\Pictures\4k wallpaper.jpg";
 
+            RectangleF imageBounds = new RectangleF();
+
+            while (imageBounds.Height != screens[1].Height && imageBounds.Width != screens[1].Width)
+            {
+                i = random.Next(files.Length);
+                imageBounds = Image.FromFile(files[i]).GetBounds(ref unit);
+            } 
+
+            image1 = files[i];
+            
             // Make images into big image
             string imagePath = ImageEditor.CreateCombinationImage(
                 new Dictionary<string, Point>()
